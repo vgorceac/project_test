@@ -13,7 +13,7 @@ pipeline {
         stage("docker login") {
             steps {
                 echo " ============== docker login =================="
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_semaev', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_victor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     docker login -u $USERNAME -p $PASSWORD
                     """
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('docker/toolbox') {
-                	sh 'docker build -t semaev/toolbox:latest . '
+                	sh 'docker build -t docker_build . '
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push semaev/toolbox:latest
+                docker push docker_build
                 '''
             }
         }
