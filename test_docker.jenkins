@@ -4,7 +4,6 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     agent any
-    triggers { pollSCM('* * * * *') }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
@@ -13,7 +12,7 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                	sh 'docker build -t docker_build'
+                	sh 'docker build docker_build'
             }
         }
     }
