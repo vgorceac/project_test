@@ -16,7 +16,7 @@ pipeline {
         }
         stage("Second step") {
             steps {
-                sh 'ssh root@agent \'uptime\''
+                sh 'ssh root@agent \'ifconfig\''
             }
         }
     }
